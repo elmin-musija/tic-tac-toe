@@ -36,6 +36,7 @@ const checkRow = (paramArray, paramCol) => {
 	}
 	if (tmpCounter === numFields) {
 		inputButtonArray[paramCol].forEach((element) => {
+			element.classList.remove(`wobble-animation`);
 			element.classList.add(`won`);
 		});
 		return true;
@@ -59,6 +60,7 @@ const checkColumn = (paramArray, paramRow) => {
 	}
 	if (tmpCounter === numFields) {
 		for (let i = 0; i < numFields; i++) {
+			inputButtonArray[i][paramRow].classList.remove(`wobble-animation`);
 			inputButtonArray[i][paramRow].classList.add(`won`);
 		}
 		return true;
@@ -82,6 +84,7 @@ const checkDiagonalLTR = (paramArray) => {
 	}
 	if (tmpCounter === numFields) {
 		for (let i = 0; i < numFields; i++) {
+			inputButtonArray[i][i].classList.remove(`wobble-animation`);
 			inputButtonArray[i][i].classList.add(`won`);
 		}
 		return true;
@@ -99,6 +102,7 @@ const checkDiagonalRTL = (paramArray) => {
 	}
 	if (tmpCounter == numFields) {
 		for (let i = 0; i < numFields; i++) {
+			element.classList.remove(`wobble-animation`);
 			inputButtonArray[numFields - 1 - i][i].classList.add(`won`);
 		}
 		return true;
@@ -194,6 +198,7 @@ const addEventListenerButton = () => {
 
 const game = (event) => {
 	const [tmpCols, tmpRows] = event.target.id.split(`-`);
+	event.target.classList.add(`wobble-animation`);
 	if (!checkFieldIsChecked(tmpCols, tmpRows)) {
 		setFieldMarker(event);
 		setFieldIsChecked(selectedFields, tmpCols, tmpRows);
@@ -223,6 +228,7 @@ const resetGame = () => {
 		element.forEach((element) => {
 			element.innerHTML = ``;
 			element.classList.remove(`won`);
+			element.classList.remove(`wobble-animation`);
 		});
 	});
 	selectedFields.forEach((element) => {
